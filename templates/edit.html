@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <body class="container">
+   
+      <h3 class="mt-5">Room - 修改預約</h3>
+      <h3>
+         <a href = "{{ url_for('show_all') }}">會議室列表</a>
+      </h3>
+
+      {%- for category, message in get_flashed_messages(with_categories = true) %}
+      	 <hr/>
+         <div class = "alert alert-danger" style='color: red'>
+            {{ message }}
+         </div>
+      {%- endfor %}
+      <hr/>
+      
+      
+      <form action = "{{ request.path }}" method = "post">
+	 <div class="input-group mb-3">
+	     <div class="input-group-prepend">
+	         <label class="input-group-text" for = "roomid">
+		     <a href="{{ url_for('booking', room_id=rbook.roomid) }}" >
+		         會議室: {{ rbook.roomid }}
+		     </a>
+		 </label>
+		<input type="hidden" name="roomid" value="{{rbook.roomid}}" />
+	     </div>
+	     <div class="input-group-append">
+	     	<label class="input-group-text" for = "useid">預約編號: {{ rbook.useid }} </label>
+		<input type="hidden" name="useid" value="{{rbook.useid}}" />
+	     </div>
+	 </div>
+	 <div class="input-group mb-3">
+	     <div class="input-group-prepend">
+		 <label class="input-group-text" for="starttime">預約時間</label>
+	     </div>
+	     <div class="input-group-append">
+		 <input class="custom-select" type="datetime-local" name="starttime" value="{{rbook.starttime}}" />
+	     </div>
+	 </div>
+	 <div class="input-group mb-3">
+	     <div class="input-group-prepend">
+		 <label class="input-group-text" for="starttime">結束時間</label>
+	     </div>
+	     <div class="input-group-append">
+		 <input class="custom-select" type="datetime-local" name="endtime" value="{{rbook.endtime}}" />
+	     </div>
+	 </div>
+	 <div class="input-group mb-3">
+	     <div class="input-group-prepend">
+                 <label class="input-group-text" for="employee">預約人</label>
+	     </div>
+	     <div class="input-group-append">
+	     	<label class="input-group-text" for = "useid"> {{ rbook.employee }} </label>
+	     </div>
+	 </div>
+	 <div class="input-group mb-3">
+	     <div class="input-group-prepend">
+                 <label class="input-group-text" for="purpose">用途:</label>
+	     </div>
+	     <input type="text" name="purpose" placeholder="用途" maxlength="5" value="{{rbook.purpose}}" />
+	 </div>
+         <input class="btn btn-primary" type = "submit" value = "Submit" />
+      </form>
+
+   </body>
+</html>

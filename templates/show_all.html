@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <head></head>
+   <body class="container">
+      
+      <h3 class="mt-5">
+         <a href = "{{ url_for('show_all') }}">會議室列表</a>
+      </h3>
+      
+      <hr/>
+      {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %}
+		
+      <table class="table">
+         <thead>
+            <tr>
+               <th>會議室 ID</th>
+               <th>會議室類型</th>
+               <th>容納人數</th>
+	       <th>管理單位</th>
+	       <th>借用</th>
+            </tr>
+         </thead>
+         
+         <tbody>
+            {% for room in rooms %}
+               <tr>
+                  <td>{{ room.rid }}</td>
+                  <td>{{ room.r_type }}</td>
+                  <td>{{ room.capacity }}</td>
+                  <td>{{ room.manadept }}</td>
+                  <td>
+		    <a href="{{ url_for('booking', room_id=room.rid) }}" >
+			預約
+		    </a>
+		  </td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+      
+   </body>
+</html>

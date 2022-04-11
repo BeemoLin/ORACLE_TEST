@@ -1,0 +1,9 @@
+__pycache__
+*.swp
+run.pid
+api.err
+api.out
+nohup.out
+.idea
+*.sqlite
+/configs
