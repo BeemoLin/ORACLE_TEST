@@ -5,8 +5,8 @@ services:
     restart: always
     build: .
     network_mode: 'host'
-    #command: python3 ./app.py
-    command: /bin/bash
+    command: python3 ./app.py
+    #command: /bin/bash
     tty: true
     volumes:
       - /etc/machine-id:/etc/machine-id

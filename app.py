@@ -35,7 +35,7 @@ def show_all():
 
 @app.route('/booking/<string:room_id>', methods = ['GET', 'POST'])
 def booking(room_id):
-    sql = 'SELECT r.USEID, r.ROOMID, d.DNAME, e.NAME, r.STARTTIME, r.ENDTIME, r.PURPOSE FROM RBOOK r LEFT JOIN EMPLOYEE e ON r.EMPLOYEEID=e.EID LEFT JOIN DEPARTMENT d ON e.DID=d.DID WHERE r.ROOMID = \'{}\''.format(room_id)
+    sql = 'SELECT r.USEID, r.ROOMID, d.DNAME, e.ENAME, r.STARTTIME, r.ENDTIME, r.PURPOSE FROM RBOOK r LEFT JOIN EMPLOYEE e ON r.EMPLOYEEID=e.EID LEFT JOIN DEPARTMENT d ON e.DID=d.DID WHERE r.ROOMID = \'{}\''.format(room_id)
     cursor.execute(sql)
     rbook_row = cursor.fetchall()
     rbook_data = []
@@ -79,7 +79,7 @@ def edit_booking():
     if request.method == 'GET':
         use_id = request.args.get('use_id')
 
-        sql = 'SELECT r.USEID, r.ROOMID, d.DNAME, e.NAME, r.STARTTIME, r.ENDTIME, r.PURPOSE FROM RBOOK r LEFT JOIN EMPLOYEE e ON r.EMPLOYEEID=e.EID LEFT JOIN DEPARTMENT d ON e.DID=d.DID WHERE r.USEID = \'{}\''.format(use_id)
+        sql = 'SELECT r.USEID, r.ROOMID, d.DNAME, e.ENAME, r.STARTTIME, r.ENDTIME, r.PURPOSE FROM RBOOK r LEFT JOIN EMPLOYEE e ON r.EMPLOYEEID=e.EID LEFT JOIN DEPARTMENT d ON e.DID=d.DID WHERE r.USEID = \'{}\''.format(use_id)
         cursor.execute(sql)
         i = cursor.fetchone()
         rbook = {
